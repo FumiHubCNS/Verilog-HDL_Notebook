@@ -7,7 +7,7 @@
       "order": 0,
       "bits": 1,
       "label": "clk",
-      "propagation": 100
+      "propagation": 10
     },
     "dev1": {
       "type": "Button",

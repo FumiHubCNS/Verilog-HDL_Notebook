@@ -42,7 +42,7 @@ endmodule
 )}
 
 async function _circuitJson(FileAttachment){return(
-await FileAttachment("counter.digitaljs.json").json()
+await FileAttachment("counter@1.digitaljs.json").json()
 )}
 
 function _viewer(circuitJson)
@@ -119,7 +119,7 @@ export default function define(runtime, observer) {
   const main = runtime.module();
   function toString() { return this.url; }
   const fileAttachments = new Map([
-    ["counter.digitaljs.json", {url: new URL("./files/ce9ccfebb58a4e3e8eea15cf4a31e867da5999146f3cfcea45f13b4eb28e7a20ded39ab0aa2e6d81763467e407442bfcb06926dc240aa6ff1b95bc41e8508252.json", import.meta.url), mimeType: "application/json", toString}]
+    ["counter@1.digitaljs.json", {url: new URL("./files/9c20a2f24bb1980920e3d057d00b858a819fea0759edc844989f03fb5289c2593db2d0ac887597efb0095bd931905ea9de8f3babefa6d14f4a68db158e93ca1d.json", import.meta.url), mimeType: "application/json", toString}]
   ]);
   main.builtin("FileAttachment", runtime.fileAttachments(name => fileAttachments.get(name)));
   main.variable(observer()).define(["md"], _1);
