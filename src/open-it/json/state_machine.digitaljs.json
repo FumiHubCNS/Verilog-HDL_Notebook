@@ -1,0 +1,1136 @@
+{
+  "subcircuits": {},
+  "devices": {
+    "dev0": {
+      "type": "Clock",
+      "net": "clk",
+      "order": 0,
+      "bits": 1,
+      "label": "clk",
+      "propagation": 10
+    },
+    "dev1": {
+      "type": "Button",
+      "net": "SYS_RST",
+      "order": 1,
+      "bits": 1,
+      "label": "SYS_RST"
+    },
+    "dev2": {
+      "type": "Button",
+      "net": "Start",
+      "order": 2,
+      "bits": 1,
+      "label": "Start"
+    },
+    "dev3": {
+      "type": "Button",
+      "net": "Stop",
+      "order": 3,
+      "bits": 1,
+      "label": "Stop"
+    },
+    "dev4": {
+      "type": "NumDisplay",
+      "net": "State",
+      "order": 4,
+      "bits": 2,
+      "label": "State"
+    },
+    "dev5": {
+      "label": "$and$state_machine.v:35$4",
+      "type": "And",
+      "hide_label": true,
+      "source_positions": [
+        {
+          "name": "state_machine.v",
+          "from": {
+            "line": 35,
+            "column": 24
+          },
+          "to": {
+            "line": 35,
+            "column": 38
+          }
+        }
+      ],
+      "bits": 1
+    },
+    "dev6": {
+      "label": "$and$state_machine.v:45$7",
+      "type": "And",
+      "hide_label": true,
+      "source_positions": [
+        {
+          "name": "state_machine.v",
+          "from": {
+            "line": 45,
+            "column": 24
+          },
+          "to": {
+            "line": 45,
+            "column": 38
+          }
+        }
+      ],
+      "bits": 1
+    },
+    "dev7": {
+      "label": "$logic_not$state_machine.v:35$2",
+      "type": "Not",
+      "hide_label": true,
+      "source_positions": [
+        {
+          "name": "state_machine.v",
+          "from": {
+            "line": 35,
+            "column": 24
+          },
+          "to": {
+            "line": 35,
+            "column": 30
+          }
+        }
+      ],
+      "bits": 1
+    },
+    "dev8": {
+      "label": "$logic_not$state_machine.v:35$3",
+      "type": "Not",
+      "hide_label": true,
+      "source_positions": [
+        {
+          "name": "state_machine.v",
+          "from": {
+            "line": 35,
+            "column": 33
+          },
+          "to": {
+            "line": 35,
+            "column": 38
+          }
+        }
+      ],
+      "bits": 1
+    },
+    "dev9": {
+      "label": "$logic_not$state_machine.v:45$5",
+      "type": "Not",
+      "hide_label": true,
+      "source_positions": [
+        {
+          "name": "state_machine.v",
+          "from": {
+            "line": 45,
+            "column": 24
+          },
+          "to": {
+            "line": 45,
+            "column": 30
+          }
+        }
+      ],
+      "bits": 1
+    },
+    "dev10": {
+      "label": "$logic_not$state_machine.v:45$6",
+      "type": "Not",
+      "hide_label": true,
+      "source_positions": [
+        {
+          "name": "state_machine.v",
+          "from": {
+            "line": 45,
+            "column": 33
+          },
+          "to": {
+            "line": 45,
+            "column": 38
+          }
+        }
+      ],
+      "bits": 1
+    },
+    "dev11": {
+      "label": "$procdff$28",
+      "type": "Dff",
+      "hide_label": true,
+      "source_positions": [
+        {
+          "name": "state_machine.v",
+          "from": {
+            "line": 21,
+            "column": 5
+          },
+          "to": {
+            "line": 56,
+            "column": 8
+          }
+        }
+      ],
+      "bits": 2,
+      "polarity": {
+        "clock": true
+      }
+    },
+    "dev12": {
+      "label": "$procmux$10",
+      "type": "Mux",
+      "hide_label": true,
+      "source_positions": [
+        {
+          "name": "state_machine.v",
+          "from": {
+            "line": 45,
+            "column": 24
+          },
+          "to": {
+            "line": 45,
+            "column": 38
+          }
+        },
+        {
+          "name": "state_machine.v",
+          "from": {
+            "line": 45,
+            "column": 21
+          },
+          "to": {
+            "line": 49,
+            "column": 24
+          }
+        }
+      ],
+      "bits": {
+        "in": 1,
+        "sel": 1
+      }
+    },
+    "dev13": {
+      "label": "$procmux$12",
+      "type": "Mux1Hot",
+      "hide_label": true,
+      "source_positions": [
+        {
+          "name": "state_machine.v",
+          "from": {
+            "line": 42,
+            "column": 20
+          },
+          "to": {
+            "line": 42,
+            "column": 20
+          }
+        },
+        {
+          "name": "state_machine.v",
+          "from": {
+            "line": 25,
+            "column": 13
+          },
+          "to": {
+            "line": 54,
+            "column": 20
+          }
+        }
+      ],
+      "bits": {
+        "in": 2,
+        "sel": 3
+      }
+    },
+    "dev14": {
+      "label": "$procmux$13_CMP0",
+      "type": "NorReduce",
+      "hide_label": true,
+      "source_positions": [
+        {
+          "name": "state_machine.v",
+          "from": {
+            "line": 42,
+            "column": 20
+          },
+          "to": {
+            "line": 42,
+            "column": 20
+          }
+        },
+        {
+          "name": "state_machine.v",
+          "from": {
+            "line": 25,
+            "column": 13
+          },
+          "to": {
+            "line": 54,
+            "column": 20
+          }
+        }
+      ],
+      "bits": 2
+    },
+    "dev15": {
+      "label": "$procmux$15",
+      "type": "Mux",
+      "hide_label": true,
+      "source_positions": [
+        {
+          "name": "state_machine.v",
+          "from": {
+            "line": 37,
+            "column": 33
+          },
+          "to": {
+            "line": 37,
+            "column": 37
+          }
+        },
+        {
+          "name": "state_machine.v",
+          "from": {
+            "line": 37,
+            "column": 30
+          },
+          "to": {
+            "line": 41,
+            "column": 24
+          }
+        }
+      ],
+      "bits": {
+        "in": 2,
+        "sel": 1
+      }
+    },
+    "dev16": {
+      "label": "$procmux$18",
+      "type": "Mux",
+      "hide_label": true,
+      "source_positions": [
+        {
+          "name": "state_machine.v",
+          "from": {
+            "line": 35,
+            "column": 24
+          },
+          "to": {
+            "line": 35,
+            "column": 38
+          }
+        },
+        {
+          "name": "state_machine.v",
+          "from": {
+            "line": 35,
+            "column": 21
+          },
+          "to": {
+            "line": 41,
+            "column": 24
+          }
+        }
+      ],
+      "bits": {
+        "in": 2,
+        "sel": 1
+      }
+    },
+    "dev17": {
+      "label": "$procmux$20_CMP0",
+      "type": "Eq",
+      "hide_label": true,
+      "source_positions": [
+        {
+          "name": "state_machine.v",
+          "from": {
+            "line": 32,
+            "column": 20
+          },
+          "to": {
+            "line": 32,
+            "column": 20
+          }
+        },
+        {
+          "name": "state_machine.v",
+          "from": {
+            "line": 25,
+            "column": 13
+          },
+          "to": {
+            "line": 54,
+            "column": 20
+          }
+        }
+      ],
+      "bits": {
+        "in1": 2,
+        "in2": 2
+      },
+      "signed": {
+        "in1": false,
+        "in2": false
+      }
+    },
+    "dev18": {
+      "label": "$procmux$22",
+      "type": "Mux",
+      "hide_label": true,
+      "source_positions": [
+        {
+          "name": "state_machine.v",
+          "from": {
+            "line": 27,
+            "column": 24
+          },
+          "to": {
+            "line": 27,
+            "column": 29
+          }
+        },
+        {
+          "name": "state_machine.v",
+          "from": {
+            "line": 27,
+            "column": 21
+          },
+          "to": {
+            "line": 31,
+            "column": 24
+          }
+        }
+      ],
+      "bits": {
+        "in": 2,
+        "sel": 1
+      }
+    },
+    "dev19": {
+      "label": "$procmux$24_CMP0",
+      "type": "Eq",
+      "hide_label": true,
+      "source_positions": [
+        {
+          "name": "state_machine.v",
+          "from": {
+            "line": 25,
+            "column": 29
+          },
+          "to": {
+            "line": 25,
+            "column": 29
+          }
+        },
+        {
+          "name": "state_machine.v",
+          "from": {
+            "line": 25,
+            "column": 13
+          },
+          "to": {
+            "line": 54,
+            "column": 20
+          }
+        }
+      ],
+      "bits": {
+        "in1": 2,
+        "in2": 1
+      },
+      "signed": {
+        "in1": false,
+        "in2": false
+      }
+    },
+    "dev20": {
+      "label": "$procmux$26",
+      "type": "Mux",
+      "hide_label": true,
+      "source_positions": [
+        {
+          "name": "state_machine.v",
+          "from": {
+            "line": 22,
+            "column": 12
+          },
+          "to": {
+            "line": 22,
+            "column": 19
+          }
+        },
+        {
+          "name": "state_machine.v",
+          "from": {
+            "line": 22,
+            "column": 9
+          },
+          "to": {
+            "line": 55,
+            "column": 12
+          }
+        }
+      ],
+      "bits": {
+        "in": 2,
+        "sel": 1
+      }
+    },
+    "dev21": {
+      "type": "BusGroup",
+      "groups": [
+        1,
+        1,
+        1
+      ]
+    },
+    "dev22": {
+      "type": "ZeroExtend",
+      "extend": {
+        "output": 2,
+        "input": 1
+      }
+    },
+    "dev23": {
+      "type": "Constant",
+      "constant": "0"
+    },
+    "dev24": {
+      "type": "Constant",
+      "constant": "1"
+    },
+    "dev25": {
+      "type": "Constant",
+      "constant": "01"
+    },
+    "dev26": {
+      "type": "Constant",
+      "constant": "10"
+    },
+    "dev27": {
+      "type": "Constant",
+      "constant": "00"
+    },
+    "dev28": {
+      "type": "Constant",
+      "constant": "1"
+    },
+    "dev29": {
+      "type": "Constant",
+      "constant": "01"
+    },
+    "dev30": {
+      "type": "Constant",
+      "constant": "01"
+    },
+    "dev31": {
+      "type": "Constant",
+      "constant": "01"
+    },
+    "dev32": {
+      "type": "Constant",
+      "constant": "10"
+    },
+    "dev33": {
+      "type": "Constant",
+      "constant": "10"
+    }
+  },
+  "connectors": [
+    {
+      "to": {
+        "id": "dev11",
+        "port": "clk"
+      },
+      "from": {
+        "id": "dev0",
+        "port": "out"
+      },
+      "name": "clk",
+      "source_positions": [
+        {
+          "name": "state_machine.v",
+          "from": {
+            "line": 10,
+            "column": 17
+          },
+          "to": {
+            "line": 10,
+            "column": 20
+          }
+        }
+      ]
+    },
+    {
+      "to": {
+        "id": "dev20",
+        "port": "sel"
+      },
+      "from": {
+        "id": "dev1",
+        "port": "out"
+      },
+      "name": "SYS_RST",
+      "source_positions": [
+        {
+          "name": "state_machine.v",
+          "from": {
+            "line": 11,
+            "column": 17
+          },
+          "to": {
+            "line": 11,
+            "column": 24
+          }
+        }
+      ]
+    },
+    {
+      "to": {
+        "id": "dev7",
+        "port": "in"
+      },
+      "from": {
+        "id": "dev2",
+        "port": "out"
+      },
+      "name": "Start",
+      "source_positions": [
+        {
+          "name": "state_machine.v",
+          "from": {
+            "line": 12,
+            "column": 17
+          },
+          "to": {
+            "line": 12,
+            "column": 22
+          }
+        }
+      ]
+    },
+    {
+      "to": {
+        "id": "dev9",
+        "port": "in"
+      },
+      "from": {
+        "id": "dev2",
+        "port": "out"
+      },
+      "name": "Start",
+      "source_positions": [
+        {
+          "name": "state_machine.v",
+          "from": {
+            "line": 12,
+            "column": 17
+          },
+          "to": {
+            "line": 12,
+            "column": 22
+          }
+        }
+      ]
+    },
+    {
+      "to": {
+        "id": "dev18",
+        "port": "sel"
+      },
+      "from": {
+        "id": "dev2",
+        "port": "out"
+      },
+      "name": "Start",
+      "source_positions": [
+        {
+          "name": "state_machine.v",
+          "from": {
+            "line": 12,
+            "column": 17
+          },
+          "to": {
+            "line": 12,
+            "column": 22
+          }
+        }
+      ]
+    },
+    {
+      "to": {
+        "id": "dev8",
+        "port": "in"
+      },
+      "from": {
+        "id": "dev3",
+        "port": "out"
+      },
+      "name": "Stop",
+      "source_positions": [
+        {
+          "name": "state_machine.v",
+          "from": {
+            "line": 13,
+            "column": 17
+          },
+          "to": {
+            "line": 13,
+            "column": 21
+          }
+        }
+      ]
+    },
+    {
+      "to": {
+        "id": "dev10",
+        "port": "in"
+      },
+      "from": {
+        "id": "dev3",
+        "port": "out"
+      },
+      "name": "Stop",
+      "source_positions": [
+        {
+          "name": "state_machine.v",
+          "from": {
+            "line": 13,
+            "column": 17
+          },
+          "to": {
+            "line": 13,
+            "column": 21
+          }
+        }
+      ]
+    },
+    {
+      "to": {
+        "id": "dev15",
+        "port": "sel"
+      },
+      "from": {
+        "id": "dev3",
+        "port": "out"
+      },
+      "name": "Stop",
+      "source_positions": [
+        {
+          "name": "state_machine.v",
+          "from": {
+            "line": 13,
+            "column": 17
+          },
+          "to": {
+            "line": 13,
+            "column": 21
+          }
+        }
+      ]
+    },
+    {
+      "to": {
+        "id": "dev4",
+        "port": "in"
+      },
+      "from": {
+        "id": "dev11",
+        "port": "out"
+      },
+      "name": "State",
+      "source_positions": [
+        {
+          "name": "state_machine.v",
+          "from": {
+            "line": 14,
+            "column": 20
+          },
+          "to": {
+            "line": 14,
+            "column": 25
+          }
+        }
+      ]
+    },
+    {
+      "to": {
+        "id": "dev14",
+        "port": "in"
+      },
+      "from": {
+        "id": "dev11",
+        "port": "out"
+      },
+      "name": "State",
+      "source_positions": [
+        {
+          "name": "state_machine.v",
+          "from": {
+            "line": 14,
+            "column": 20
+          },
+          "to": {
+            "line": 14,
+            "column": 25
+          }
+        }
+      ]
+    },
+    {
+      "to": {
+        "id": "dev17",
+        "port": "in1"
+      },
+      "from": {
+        "id": "dev11",
+        "port": "out"
+      },
+      "name": "State",
+      "source_positions": [
+        {
+          "name": "state_machine.v",
+          "from": {
+            "line": 14,
+            "column": 20
+          },
+          "to": {
+            "line": 14,
+            "column": 25
+          }
+        }
+      ]
+    },
+    {
+      "to": {
+        "id": "dev19",
+        "port": "in1"
+      },
+      "from": {
+        "id": "dev11",
+        "port": "out"
+      },
+      "name": "State",
+      "source_positions": [
+        {
+          "name": "state_machine.v",
+          "from": {
+            "line": 14,
+            "column": 20
+          },
+          "to": {
+            "line": 14,
+            "column": 25
+          }
+        }
+      ]
+    },
+    {
+      "to": {
+        "id": "dev5",
+        "port": "in1"
+      },
+      "from": {
+        "id": "dev7",
+        "port": "out"
+      },
+      "source_positions": []
+    },
+    {
+      "to": {
+        "id": "dev5",
+        "port": "in2"
+      },
+      "from": {
+        "id": "dev8",
+        "port": "out"
+      },
+      "source_positions": []
+    },
+    {
+      "to": {
+        "id": "dev16",
+        "port": "sel"
+      },
+      "from": {
+        "id": "dev5",
+        "port": "out"
+      },
+      "source_positions": []
+    },
+    {
+      "to": {
+        "id": "dev6",
+        "port": "in1"
+      },
+      "from": {
+        "id": "dev9",
+        "port": "out"
+      },
+      "source_positions": []
+    },
+    {
+      "to": {
+        "id": "dev6",
+        "port": "in2"
+      },
+      "from": {
+        "id": "dev10",
+        "port": "out"
+      },
+      "source_positions": []
+    },
+    {
+      "to": {
+        "id": "dev12",
+        "port": "sel"
+      },
+      "from": {
+        "id": "dev6",
+        "port": "out"
+      },
+      "source_positions": []
+    },
+    {
+      "to": {
+        "id": "dev11",
+        "port": "in"
+      },
+      "from": {
+        "id": "dev20",
+        "port": "out"
+      },
+      "source_positions": []
+    },
+    {
+      "to": {
+        "id": "dev12",
+        "port": "in0"
+      },
+      "from": {
+        "id": "dev23",
+        "port": "out"
+      },
+      "source_positions": []
+    },
+    {
+      "to": {
+        "id": "dev12",
+        "port": "in1"
+      },
+      "from": {
+        "id": "dev24",
+        "port": "out"
+      },
+      "source_positions": []
+    },
+    {
+      "to": {
+        "id": "dev19",
+        "port": "in2"
+      },
+      "from": {
+        "id": "dev28",
+        "port": "out"
+      },
+      "source_positions": []
+    },
+    {
+      "to": {
+        "id": "dev22",
+        "port": "in"
+      },
+      "from": {
+        "id": "dev12",
+        "port": "out"
+      },
+      "source_positions": []
+    },
+    {
+      "to": {
+        "id": "dev13",
+        "port": "in0"
+      },
+      "from": {
+        "id": "dev25",
+        "port": "out"
+      },
+      "source_positions": []
+    },
+    {
+      "to": {
+        "id": "dev16",
+        "port": "in1"
+      },
+      "from": {
+        "id": "dev29",
+        "port": "out"
+      },
+      "source_positions": []
+    },
+    {
+      "to": {
+        "id": "dev18",
+        "port": "in0"
+      },
+      "from": {
+        "id": "dev30",
+        "port": "out"
+      },
+      "source_positions": []
+    },
+    {
+      "to": {
+        "id": "dev20",
+        "port": "in1"
+      },
+      "from": {
+        "id": "dev31",
+        "port": "out"
+      },
+      "source_positions": []
+    },
+    {
+      "to": {
+        "id": "dev13",
+        "port": "sel"
+      },
+      "from": {
+        "id": "dev21",
+        "port": "out"
+      },
+      "source_positions": []
+    },
+    {
+      "to": {
+        "id": "dev20",
+        "port": "in0"
+      },
+      "from": {
+        "id": "dev13",
+        "port": "out"
+      },
+      "source_positions": []
+    },
+    {
+      "to": {
+        "id": "dev13",
+        "port": "in1"
+      },
+      "from": {
+        "id": "dev18",
+        "port": "out"
+      },
+      "source_positions": []
+    },
+    {
+      "to": {
+        "id": "dev13",
+        "port": "in2"
+      },
+      "from": {
+        "id": "dev16",
+        "port": "out"
+      },
+      "source_positions": []
+    },
+    {
+      "to": {
+        "id": "dev13",
+        "port": "in3"
+      },
+      "from": {
+        "id": "dev22",
+        "port": "out"
+      },
+      "source_positions": []
+    },
+    {
+      "to": {
+        "id": "dev21",
+        "port": "in2"
+      },
+      "from": {
+        "id": "dev14",
+        "port": "out"
+      },
+      "source_positions": []
+    },
+    {
+      "to": {
+        "id": "dev15",
+        "port": "in0"
+      },
+      "from": {
+        "id": "dev26",
+        "port": "out"
+      },
+      "source_positions": []
+    },
+    {
+      "to": {
+        "id": "dev17",
+        "port": "in2"
+      },
+      "from": {
+        "id": "dev32",
+        "port": "out"
+      },
+      "source_positions": []
+    },
+    {
+      "to": {
+        "id": "dev18",
+        "port": "in1"
+      },
+      "from": {
+        "id": "dev33",
+        "port": "out"
+      },
+      "source_positions": []
+    },
+    {
+      "to": {
+        "id": "dev15",
+        "port": "in1"
+      },
+      "from": {
+        "id": "dev27",
+        "port": "out"
+      },
+      "source_positions": []
+    },
+    {
+      "to": {
+        "id": "dev16",
+        "port": "in0"
+      },
+      "from": {
+        "id": "dev15",
+        "port": "out"
+      },
+      "source_positions": []
+    },
+    {
+      "to": {
+        "id": "dev21",
+        "port": "in1"
+      },
+      "from": {
+        "id": "dev17",
+        "port": "out"
+      },
+      "source_positions": []
+    },
+    {
+      "to": {
+        "id": "dev21",
+        "port": "in0"
+      },
+      "from": {
+        "id": "dev19",
+        "port": "out"
+      },
+      "source_positions": []
+    }
+  ]
+}
