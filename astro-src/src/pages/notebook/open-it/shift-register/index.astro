@@ -1,6 +1,11 @@
 ---
 import MainLayout from '../../../../layouts/MainLayout.astro';
-const embedBase = '/open-it/8de0fb74a98fc960/';
+import { withBase } from '../../../../lib/path';
+
+const pageBase = withBase("/notebook/open-it/8de0fb74a98fc960");
+const indexJs = `${pageBase}/index.js`;
+const runtimeJs = `${pageBase}/runtime.js`;
+const inspectorCss = `${pageBase}/inspector.css`;
 ---
 
 <MainLayout title="Shift register" description="An interactive notebook exploring the concept of a shift register, a fundamental component in digital electronics used for storing and shifting data.">
@@ -8,11 +13,14 @@ const embedBase = '/open-it/8de0fb74a98fc960/';
     <div id="observablehq-main"></div>
   </article>
 
-  <link rel="stylesheet" href={`${embedBase}inspector.css`} />
+  <link rel="stylesheet" href={inspectorCss} />
 
-  <script type="module">
-    import define from "/open-it/8de0fb74a98fc960/index.js";
-    import { Runtime, Library, Inspector } from "/open-it/8de0fb74a98fc960/runtime.js";
+  <script type="module" define:vars={{ indexJs, runtimeJs }}>
+    const defineModule = await import(indexJs);
+    const runtimeModule = await import(runtimeJs);
+
+    const define = defineModule.default;
+    const { Runtime, Inspector } = runtimeModule;
 
     const runtime = new Runtime();
     runtime.module(define, Inspector.into(document.querySelector("#observablehq-main")));

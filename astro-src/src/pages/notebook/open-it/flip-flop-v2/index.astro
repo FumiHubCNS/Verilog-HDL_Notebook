@@ -1,6 +1,11 @@
 ---
 import MainLayout from '../../../../layouts/MainLayout.astro';
-const embedBase = '/open-it/5e59befcbcc4269d/';
+import { withBase } from '../../../../lib/path';
+
+const pageBase = withBase("/notebook/open-it/5e59befcbcc4269d");
+const indexJs = `${pageBase}/index.js`;
+const runtimeJs = `${pageBase}/runtime.js`;
+const inspectorCss = `${pageBase}/inspector.css`;
 ---
 
 <MainLayout title="D-Flip-Flop v2">
@@ -8,17 +13,19 @@ const embedBase = '/open-it/5e59befcbcc4269d/';
     <div id="observablehq-main"></div>
   </article>
 
-  <link rel="stylesheet" href={`${embedBase}inspector.css`} />
+  <link rel="stylesheet" href={inspectorCss} />
 
-  <script type="module">
-    import define from "/open-it/5e59befcbcc4269d/index.js";
-    import { Runtime, Library, Inspector } from "/open-it/5e59befcbcc4269d/runtime.js";
+  <script type="module" define:vars={{ indexJs, runtimeJs }}>
+    const defineModule = await import(indexJs);
+    const runtimeModule = await import(runtimeJs);
+
+    const define = defineModule.default;
+    const { Runtime, Inspector } = runtimeModule;
 
     const runtime = new Runtime();
     runtime.module(define, Inspector.into(document.querySelector("#observablehq-main")));
   </script>
 </MainLayout>
-
 <style>
   .embedded-html {
     width: 100%;
