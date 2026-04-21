@@ -1,0 +1,38 @@
+---
+import MainLayout from '../../../layouts/MainLayout.astro';
+const links = [
+  { label: "counter", href: "/notebook/open-it/counter", external: false },
+  { label: "counter2", href: "/notebook/open-it/counter-v2", external: false },
+  { label: "flip-flop", href: "/notebook/open-it/flip-flop", external: false },
+  { label: "flip-flop2", href: "/notebook/open-it/flip-flop-v2", external: false },
+  { label: "shift-register", href: "/notebook/open-it/shift-register", external: false },
+  { label: "state-machine", href: "/notebook/open-it/state-machine", external: false },
+];
+---
+
+<MainLayout title="Open Itのチュートリアル">
+  <h2>Open Itのチュートリアル</h2>
+  <p>
+    Open ItのFPGAトレーニングコース: 
+    <a href="https://openit.kek.jp/training/2012/FPGA-Training/docs/web_intro_verilog-hdl">Verilog-HDL入門</a>
+    のサンプルコードを書いてみて挙動を確かめてみます。
+    <br>
+    
+  <ul>
+    {links.map((link) => (
+      <li>
+        <a
+          href={link.href}
+          target={link.external ? "_blank" : undefined}
+          rel={link.external ? "noreferrer" : undefined}
+        >
+          {link.label}
+        </a>
+      </li>
+    ))}
+  </ul>
+    
+
+  </p>
+  
+</MainLayout>

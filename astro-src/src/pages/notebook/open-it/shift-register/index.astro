@@ -1,0 +1,26 @@
+---
+import MainLayout from '../../../../layouts/MainLayout.astro';
+const embedBase = '/open-it/8de0fb74a98fc960/';
+---
+
+<MainLayout title="Shift register" description="An interactive notebook exploring the concept of a shift register, a fundamental component in digital electronics used for storing and shifting data.">
+  <article class="Shift register">
+    <div id="observablehq-main"></div>
+  </article>
+
+  <link rel="stylesheet" href={`${embedBase}inspector.css`} />
+
+  <script type="module">
+    import define from "/open-it/8de0fb74a98fc960/index.js";
+    import { Runtime, Library, Inspector } from "/open-it/8de0fb74a98fc960/runtime.js";
+
+    const runtime = new Runtime();
+    runtime.module(define, Inspector.into(document.querySelector("#observablehq-main")));
+  </script>
+</MainLayout>
+
+<style>
+  .embedded-html {
+    width: 100%;
+  }
+</style>

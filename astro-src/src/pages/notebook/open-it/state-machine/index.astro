@@ -1,0 +1,26 @@
+---
+import MainLayout from '../../../../layouts/MainLayout.astro';
+const embedBase = '/open-it/1b08afce444a5ad2/';
+---
+
+<MainLayout title="State Machine">
+  <article class="State Machine">
+    <div id="observablehq-main"></div>
+  </article>
+
+  <link rel="stylesheet" href={`${embedBase}inspector.css`} />
+
+  <script type="module">
+    import define from "/open-it/1b08afce444a5ad2/index.js";
+    import { Runtime, Library, Inspector } from "/open-it/1b08afce444a5ad2/runtime.js";
+
+    const runtime = new Runtime();
+    runtime.module(define, Inspector.into(document.querySelector("#observablehq-main")));
+  </script>
+</MainLayout>
+
+<style>
+  .embedded-html {
+    width: 100%;
+  }
+</style>

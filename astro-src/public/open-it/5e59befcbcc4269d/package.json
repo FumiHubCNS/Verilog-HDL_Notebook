@@ -1,0 +1,14 @@
+{
+  "name": "5e59befcbcc4269d",
+  "main": "5e59befcbcc4269d@18.js",
+  "version": "18.0.0",
+  "homepage": "https://observablehq.com/d/5e59befcbcc4269d",
+  "author": {
+    "name": "verilog-hdl",
+    "url": "https://observablehq.com/@verilog-hdl1234236135"
+  },
+  "type": "module",
+  "peerDependencies": {
+    "@observablehq/runtime": "4 - 5"
+  }
+}

@@ -1,0 +1,26 @@
+---
+import MainLayout from '../../../../layouts/MainLayout.astro';
+const embedBase = '/open-it/5e59befcbcc4269d/';
+---
+
+<MainLayout title="D-Flip-Flop v2">
+  <article class="D-Flip-Flop v2">
+    <div id="observablehq-main"></div>
+  </article>
+
+  <link rel="stylesheet" href={`${embedBase}inspector.css`} />
+
+  <script type="module">
+    import define from "/open-it/5e59befcbcc4269d/index.js";
+    import { Runtime, Library, Inspector } from "/open-it/5e59befcbcc4269d/runtime.js";
+
+    const runtime = new Runtime();
+    runtime.module(define, Inspector.into(document.querySelector("#observablehq-main")));
+  </script>
+</MainLayout>
+
+<style>
+  .embedded-html {
+    width: 100%;
+  }
+</style>

@@ -1,0 +1,32 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+const links = [
+  { label: "notebook", href: "/notebook", external: false }
+];
+---
+
+<MainLayout title="Home">
+  <h2>Verliog-HDLノートブック</h2>
+  <p>
+    Verilog-HDLの学習のためのノートブックです。
+    モチベーションとしては2026年から始めたSAMIDAREのFWの開発を行うことにしました。
+    ただ、私自身がVerilog-HDLを使ったことがないのでゼロから学ぶことになります。
+    そこで、学習の過程をノートブックにまとめていこうと思います。
+    <br>
+
+  <ul>
+    {links.map((link) => (
+      <li>
+        <a
+          href={link.href}
+          target={link.external ? "_blank" : undefined}
+          rel={link.external ? "noreferrer" : undefined}
+        >
+          {link.label}
+        </a>
+      </li>
+    ))}
+  </ul>
+
+  </p>
+</MainLayout>

@@ -1,0 +1,90 @@
+---
+import type { NavItem } from "./sidebarData";
+
+interface Props {
+  items: NavItem[];
+  currentPath: string;
+}
+
+const { items, currentPath } = Astro.props;
+
+function isActive(href?: string) {
+  if (!href) return false;
+  return currentPath === href;
+}
+
+function isOpen(item: NavItem): boolean {
+  if (item.href && currentPath.startsWith(item.href) && item.href !== "/") return true;
+  if (item.href === "/" && currentPath === "/") return true;
+  return !!item.children?.some(isOpen);
+}
+---
+
+<ul class="nav-tree">
+  {items.map((item) => (
+    <li>
+      <div class="nav-item">
+        {item.href ? (
+          <a
+            href={item.href}
+            class:list={[
+              "nav-link",
+              { active: isActive(item.href), open: isOpen(item) }
+            ]}
+          >
+            {item.title}
+          </a>
+        ) : (
+          <span class="nav-label">{item.title}</span>
+        )}
+      </div>
+
+      {item.children && isOpen(item) && (
+        <div class="nav-children">
+          <Astro.self items={item.children} currentPath={currentPath} />
+        </div>
+      )}
+    </li>
+  ))}
+</ul>
+
+<style>
+  .nav-tree {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-item {
+    margin: 0.2rem 0;
+  }
+
+  .nav-link,
+  .nav-label {
+    display: block;
+    padding: 0.45rem 0.7rem;
+    border-radius: 8px;
+    color: inherit;
+    text-decoration: none;
+    font-size: 0.95rem;
+  }
+
+  .nav-link:hover {
+    background: #eef2f7;
+  }
+
+  .nav-link.active {
+    background: #dbeafe;
+    font-weight: 700;
+  }
+
+  .nav-link.open {
+    color: #111827;
+  }
+
+  .nav-children {
+    margin-left: 0.9rem;
+    padding-left: 0.5rem;
+    border-left: 1px solid #d8dee4;
+  }
+</style>
