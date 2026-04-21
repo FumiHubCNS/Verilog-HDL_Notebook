@@ -28,18 +28,9 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
           cache-dependency-path: astro-src/package-lock.json
-
-      - name: Show workspace
-        run: |
-          echo "PWD=$(pwd)"
-          ls -la
-          echo "--- astro-src ---"
-          ls -la astro-src
-          echo "--- package.json ---"
-          cat astro-src/package.json
 
       - name: Install dependencies
         working-directory: astro-src
@@ -48,12 +39,6 @@ jobs:
       - name: Build site
         working-directory: astro-src
         run: npm run build
-
-      - name: Show dist
-        run: |
-          echo "--- dist ---"
-          ls -la astro-src/dist
-          find astro-src/dist -maxdepth 3 -type f | sort | head -100
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
