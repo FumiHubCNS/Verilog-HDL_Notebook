@@ -1,7 +1,8 @@
 ---
 import MainLayout from '../../../../layouts/MainLayout.astro';
+import { withBase } from '../../../../lib/path';
 
-const pageBase = "/notebook/open-it/e56a282f9c4747df";
+const pageBase = withBase("/notebook/open-it/e56a282f9c4747df");
 const indexJs = `${pageBase}/index.js`;
 const runtimeJs = `${pageBase}/runtime.js`;
 const inspectorCss = `${pageBase}/inspector.css`;
