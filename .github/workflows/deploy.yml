@@ -32,11 +32,13 @@ jobs:
           cache: npm
           cache-dependency-path: astro-src/package-lock.json
 
-      - name: Show files
+      - name: Show workspace
         run: |
-          pwd
+          echo "PWD=$(pwd)"
           ls -la
+          echo "--- astro-src ---"
           ls -la astro-src
+          echo "--- package.json ---"
           cat astro-src/package.json
 
       - name: Install dependencies
@@ -49,17 +51,18 @@ jobs:
 
       - name: Show dist
         run: |
-          ls -la astro-src
+          echo "--- dist ---"
           ls -la astro-src/dist
+          find astro-src/dist -maxdepth 3 -type f | sort | head -100
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v5
+        uses: actions/upload-pages-artifact@v3
         with:
           path: astro-src/dist
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v5
+        uses: actions/deploy-pages@v4
