@@ -6,54 +6,59 @@ export type NavItem = {
 
 const base = import.meta.env.BASE_URL;
 
+const withBase = (path: string) => {
+  if (path === "/") return base;
+  return `${base}${path.replace(/^\/+/, "")}`;
+};
+
 export const navItems: NavItem[] = [
   ////////////////////////////////////////////////////////////
   // Home
   ////////////////////////////////////////////////////////////
   {
     title: "Home",
-    href: `${base}`,
+    href: withBase("/"),
   },
   ////////////////////////////////////////////////////////////
   // notebook
   ////////////////////////////////////////////////////////////
   {
     title: "notebook",
-    href: `${base}notebook/`,
+    href: withBase("/notebook/"),
     children: [
       {
         title: "Open-It",
-        href: `${base}notebook/open-it/`,
+        href: withBase("/notebook/open-it/"),
         children: [
           ////////////////////////////////////////////////////////////
           {
             title: "Counter",
-            href: `${base}notebook/open-it/counter/`,
+            href: withBase("/notebook/open-it/counter/"),
           },
           ////////////////////////////////////////////////////////////
           {
             title: "Counter v2",
-            href: `${base}notebook/open-it/counter-v2/`,
+            href: withBase("/notebook/open-it/counter-v2/"),
           },
           ////////////////////////////////////////////////////////////
           {
             title: "Flip Flop",
-            href: `${base}notebook/open-it/flip-flop/`,
+            href: withBase("/notebook/open-it/flip-flop/"),
           },
           ////////////////////////////////////////////////////////////
           {
             title: "Flip Flop v2",
-            href: `${base}notebook/open-it/flip-flop-v2/`,
+            href: withBase("/notebook/open-it/flip-flop-v2/"),
           },
           ////////////////////////////////////////////////////////////
           {
             title: "Shift Register",
-            href: `${base}notebook/open-it/shift-register/`,
+            href: withBase("/notebook/open-it/shift-register/"),
           },
           /////////////////////////////////////////////////////////////
           {
             title: "State Machine",
-            href: `${base}notebook/open-it/state-machine/`,
+            href: withBase("/notebook/open-it/state-machine/"),
           },
           /////////////////////////////////////////////////////////////
         ],

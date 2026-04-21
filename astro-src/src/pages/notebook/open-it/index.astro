@@ -1,14 +1,15 @@
 ---
 import MainLayout from '../../../layouts/MainLayout.astro';
-const base = import.meta.env.BASE_URL;
+import { withBase } from '../../../lib/path';
+
 
 const links = [
-  { label: "counter", href: `${base}notebook/open-it/counter`, external: false },
-  { label: "counter2", href: `${base}notebook/open-it/counter-v2`, external: false },
-  { label: "flip-flop", href: `${base}notebook/open-it/flip-flop`, external: false },
-  { label: "flip-flop2", href: `${base}notebook/open-it/flip-flop-v2`, external: false },
-  { label: "shift-register", href: `${base}notebook/open-it/shift-register`, external: false },
-  { label: "state-machine", href: `${base}notebook/open-it/state-machine`, external: false },
+  { label: "counter", href: withBase("/notebook/open-it/counter"), external: false },
+  { label: "counter2", href: withBase("/notebook/open-it/counter-v2"), external: false },
+  { label: "flip-flop", href: withBase("/notebook/open-it/flip-flop"), external: false },
+  { label: "flip-flop2", href: withBase("/notebook/open-it/flip-flop-v2"), external: false },
+  { label: "shift-register", href: withBase("/notebook/open-it/shift-register"), external: false },
+  { label: "state-machine", href: withBase("/notebook/open-it/state-machine"), external: false },
 ];
 ---
 
