@@ -1,5 +1,7 @@
-// @ts-check
+// astro-src/astro.config.mjs
 import { defineConfig } from 'astro/config';
 
-// https://astro.build/config
-export default defineConfig({});
+export default defineConfig({
+  site: 'https://fumihubcns.github.io',
+  base: '/Verilog-HDL_Notebook/',
+});
