@@ -1,6 +1,8 @@
 ---
 import MainLayout from '../../../../layouts/MainLayout.astro';
-const embedBase = `${import.meta.env.BASE_URL}/open-it/e56a282f9c4747df`;
+import { withBase } from '../../lib/path';
+
+const embedBase = withBase("/notebook/open-it/e56a282f9c4747df");
 ---
 
 <MainLayout title="Counter">
@@ -11,8 +13,8 @@ const embedBase = `${import.meta.env.BASE_URL}/open-it/e56a282f9c4747df`;
   <link rel="stylesheet" href={`${embedBase}/inspector.css`} />
 
   <script type="module">
-    import define from "/open-it/e56a282f9c4747df/index.js";
-    import { Runtime, Library, Inspector } from "/open-it/e56a282f9c4747df/runtime.js";
+    import define from `${embedBase}/index.js`;
+    import { Runtime, Library, Inspector } from `${embedBase}/runtime.js`;
 
     const runtime = new Runtime();
     runtime.module(define, Inspector.into(document.querySelector("#observablehq-main")));
