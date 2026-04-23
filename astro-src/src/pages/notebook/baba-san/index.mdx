@@ -1,0 +1,84 @@
+---
+layout: "../../../layouts/MainLayout.astro"
+title: "Baba-san's lecture"
+author: "Fumitaka ENDO"
+---
+
+import PdfEmbed from '../../../components/PdfEmbed.astro';
+import { withBase } from '../../../lib/path';
+
+export const fw_links = [
+  {
+    label: "サンプルコード ①",
+    href: withBase("/notebook/baba-san/example1/"),
+    external: false
+  }
+];
+
+# 馬場さんの講義資料実装
+
+馬場さんからいただいたDigilent Cmod S7 Form Factor Boardを使ったFPGA講義資料を実装してみます。
+
+<img
+  src={withBase("/image/cmod-s7-callout2.webp")}
+  alt="Digilent Cmod S7 Form Factor Board"
+/>
+
+## サンプルコード
+
+<ul>
+  {fw_links.map((link) => (
+    <li>
+      <a
+        href={link.href}
+        target={link.external ? "_blank" : undefined}
+        rel={link.external ? "noreferrer" : undefined}
+      >
+        {link.label}
+      </a>
+    </li>
+  ))}
+</ul>
+
+{/* 
+---
+import MainLayout from '../../../layouts/MainLayout.astro';
+import { withBase } from '../../../lib/path';
+
+
+const links = [
+  { label: "counter", href: withBase("/notebook/open-it/counter"), external: false },
+  { label: "counter2", href: withBase("/notebook/open-it/counter-v2"), external: false },
+  { label: "flip-flop", href: withBase("/notebook/open-it/flip-flop"), external: false },
+  { label: "flip-flop2", href: withBase("/notebook/open-it/flip-flop-v2"), external: false },
+  { label: "shift-register", href: withBase("/notebook/open-it/shift-register"), external: false },
+  { label: "state-machine", href: withBase("/notebook/open-it/state-machine"), external: false },
+];
+---
+
+<MainLayout title="Open Itのチュートリアル">
+  <h2>Open Itのチュートリアル</h2>
+  <p>
+    Open ItのFPGAトレーニングコース: 
+    <a href="https://openit.kek.jp/training/2012/FPGA-Training/docs/web_intro_verilog-hdl">Verilog-HDL入門</a>
+    のサンプルコードを書いてみて挙動を確かめてみます。
+    <br>
+    
+  <ul>
+    {links.map((link) => (
+      <li>
+        <a
+          href={link.href}
+          target={link.external ? "_blank" : undefined}
+          rel={link.external ? "noreferrer" : undefined}
+        >
+          {link.label}
+        </a>
+      </li>
+    ))}
+  </ul>
+    
+
+  </p>
+  
+</MainLayout> */}

@@ -1,0 +1,38 @@
+---
+layout: "../../layouts/MainLayout.astro"
+title: "SAMIDARE"
+author: "Fumitaka ENDO"
+---
+
+import PdfEmbed from '../../components/PdfEmbed.astro';
+import { withBase } from '../../lib/path';
+
+export const fw_links = [
+  {
+    label: "version 1 (1dc8d81e1f7ed9e4b90b148628b2bea76d316674)",
+    href: withBase("/samidare/1dc8d81e1f7ed9e4b90b148628b2bea76d316674/"),
+    external: false
+  }
+];
+
+# SAMpa based high Integrated DAta REadout board (SAMIDARE)
+
+SAMIDARE は、4つのSAMPA V4チップ（計128チャネル）と Artix UltraScale+ FPGA を用いた、連続読み出し用波形ディジタイザボードです。
+
+このページはSAMIDARE開発で得た知見の備忘録です。
+
+## Firemware
+
+<ul>
+  {fw_links.map((link) => (
+    <li>
+      <a
+        href={link.href}
+        target={link.external ? "_blank" : undefined}
+        rel={link.external ? "noreferrer" : undefined}
+      >
+        {link.label}
+      </a>
+    </li>
+  ))}
+</ul>
