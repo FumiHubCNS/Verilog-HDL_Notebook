@@ -12,7 +12,7 @@
 
 - `yosys`: Verliog-RTLの合成ツール
 - `digitaljs`: 論理回路シミュレータ
-- `yosys2digitaljs`: `yosys`を使って`digitaljs``で読める`json`  (hoge.v -> hoge.json)
+- `yosys2digitaljs`: `yosys`を使って`digitaljs`で読める`json`  (hoge.v -> hoge.json)
 - `observable`: javascriptが実行できるノートブック（Webサービス）
 - `astro`: 静的サイトジェネレータ
 
