@@ -4,16 +4,29 @@ title: "SAMIDARE"
 author: "Fumitaka ENDO"
 ---
 
-import PdfEmbed from '../../components/PdfEmbed.astro';
 import { withBase } from '../../lib/path';
 
 export const fw_links = [
   {
     label: "version 1 (1dc8d81e1f7ed9e4b90b148628b2bea76d316674)",
-    href: withBase("/samidare/1dc8d81e1f7ed9e4b90b148628b2bea76d316674/"),
+    href: withBase("/samidare/firmware/1dc8d81e1f7ed9e4b90b148628b2bea76d316674/"),
     external: false
   }
 ];
+
+export const links = [
+  {
+   label: "基板説明",
+    href: withBase("/samidare/board/"),
+    external: false
+  },
+  {
+   label: "備忘録",
+    href: withBase("/samidare/memo/"),
+    external: false
+  }
+];
+
 
 # SAMpa based high Integrated DAta REadout board (SAMIDARE)
 
@@ -25,6 +38,23 @@ SAMIDARE は、4つのSAMPA V4チップ（計128チャネル）と Artix UltraSc
 
 <ul>
   {fw_links.map((link) => (
+    <li>
+      <a
+        href={link.href}
+        target={link.external ? "_blank" : undefined}
+        rel={link.external ? "noreferrer" : undefined}
+      >
+        {link.label}
+      </a>
+    </li>
+  ))}
+</ul>
+
+
+## その他リンク
+
+<ul>
+  {links.map((link) => (
     <li>
       <a
         href={link.href}

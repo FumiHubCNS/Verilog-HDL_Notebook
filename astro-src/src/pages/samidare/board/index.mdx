@@ -1,0 +1,41 @@
+---
+layout: "../../../layouts/MainLayout.astro"
+title: "基板説明"
+author: "Fumitaka ENDO"
+---
+
+import { withBase } from '../../../lib/path';
+
+export const fw_links = [
+  {
+    label: "SAMPAのピンリスト",
+    href: withBase("/samidare/board/33f7beaac9cfa2619e9afd1cc2f087d0db1690b7/"),
+    external: false
+  },
+  {
+    label: "SAMPAの配線メモ",
+    href: withBase("/samidare/board/36a2c2c54851a532aaba88bd010aa685f5378848/"),
+    external: false
+  },
+  {
+    label: "Mode切り替えについて",
+    href: withBase("/samidare/board/c93313b0dfc84d04d88f326bfc24500363224ba5/"),
+    external: false
+  },
+];
+
+# 基板説明
+
+<ul>
+  {fw_links.map((link) => (
+    <li>
+      <a
+        href={link.href}
+        target={link.external ? "_blank" : undefined}
+        rel={link.external ? "noreferrer" : undefined}
+      >
+        {link.label}
+      </a>
+    </li>
+  ))}
+</ul>

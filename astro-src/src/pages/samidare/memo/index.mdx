@@ -1,0 +1,41 @@
+---
+layout: "../../../layouts/MainLayout.astro"
+title: "備忘録"
+author: "Fumitaka ENDO"
+---
+
+import { withBase } from '../../../lib/path';
+
+export const fw_links = [
+  {
+    label: "最初の合成時のエラーについて",
+    href: withBase("/samidare/memo/7e5c663daad64896a6155a8cdd2510668060990a/"),
+    external: false
+  },
+  {
+    label: "SAMIDAREボードにSPI Flash書き込む方法",
+    href: withBase("/samidare/memo/22903ec799379fe4c8903776092e16faefad627b/"),
+    external: false
+  },
+  {
+    label: "vivadoで実機の信号を確認する方法",
+    href: withBase("/samidare/memo/f00563781a011d21a69c139b35494f8e547137ee/"),
+    external: false
+  },
+];
+
+# 備忘録
+
+<ul>
+  {fw_links.map((link) => (
+    <li>
+      <a
+        href={link.href}
+        target={link.external ? "_blank" : undefined}
+        rel={link.external ? "noreferrer" : undefined}
+      >
+        {link.label}
+      </a>
+    </li>
+  ))}
+</ul>

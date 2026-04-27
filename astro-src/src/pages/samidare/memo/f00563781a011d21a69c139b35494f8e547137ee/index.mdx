@@ -1,0 +1,43 @@
+---
+layout: "../../../../layouts/MainLayout.astro"
+title: "vivadoで実機の信号を確認する方法"
+author: "Fumitaka ENDO"
+---
+
+import { withBase } from '../../../../lib/path';
+
+
+
+# vivadoで実機の信号を確認する方法
+
+この記事は事前にハードウェアの接続や設定が終わっている段階から買いています。
+
+GUIでやるならNetlist/Implemented Designから追加します。
+
+1. `Open Implemented Design`をクリックします。
+2. 見たい信号を`Netlist`か`Schematic`で探します。
+
+<img
+  src={withBase("/image/samidare002.png")}
+  alt="mark debugの方法1"
+  style={{ height: "300px", width: "auto" }}
+/>
+
+3. 右クリックして`Mark Debug`をクリックします。
+4. `Set Up Debug`をクリックします。
+
+<img
+  src={withBase("/image/samidare003.png")}
+  alt="mark debugの方法2"
+  style={{ height: "300px", width: "auto" }}
+/>
+
+5. Set up debugのウィンドウを開き、追加した信号を選びます。
+
+<img
+  src={withBase("/image/samidare004.png")}
+  alt="mark debugの方法3"
+  style={{ height: "300px", width: "auto" }}
+/>
+
+後の手順は`bitstream`を生成して、実機に書き込む手順と一緒です

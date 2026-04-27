@@ -1,0 +1,59 @@
+---
+layout: "../../../../layouts/MainLayout.astro"
+title: "Mode切り替えについて"
+author: "Fumitaka ENDO"
+---
+
+import PdfEmbed from '../../../../components/PdfEmbed.astro';
+import { withBase } from '../../../../lib/path';
+
+# Mode切り替えについて
+
+`clk_config[6]`の値でモードの切り替えができるようです。
+
+モードを切り替えると挙動が変わるようで、いくつかの設定も一緒に変えるがあるかもしれないです。
+
+ちゃらく読んだ感じではDASモードでは`trg`でデータの取得を制御するっぽいです。
+
+| SAMPA Netname (回路図) | DAS                | DSP             |
+| :-------------------: | :----------------: | :-------------: |
+| `clk_config[6]`       | `1`                | `0`             |
+| `trg`                 | `1` (start)        | unused          |
+| `hb_trg`              | `0`                | unused          |
+| `bx_sync_trg`         | `0/1`              | unused          |
+| `sme`                 | `0` (recommended)  | `0`             |
+| `BYPASS`              | `0x0`(recommended) | `0x0`           |
+| `SOCFG[3:0]`          | unused             | set link number |
+
+これらのパラメータのうち`clk_config[6:0]`、`trg`、`hb_trg`、`bx_sync_trg`、`sme`は物理的につながるべきもので、`BYPASS`、`SOCFG[3:0]`はI2C経由で書き込むべきものであるようです。
+
+<a href={`${withBase("/samidare/board/33f7beaac9cfa2619e9afd1cc2f087d0db1690b7/")}`}>SAMPAのピンリスト</a>
+と
+<a href={`${withBase("/samidare/board/36a2c2c54851a532aaba88bd010aa685f5378848/")}`}>SAMPAの配線</a>
+をみながら物理配線を確認していくと以下のようになっていました。
+
+- すべてのSAMPAチップの`clk_config[6]`がFPGA上の`CLK_CFG[6:0]`に接続
+- `trg`は差動信号で`S_TRG_P`と`S_TRG_N`になっていて個別に設定(`S_TRG_[P/N][chip number]`)
+- `hb_trg`も差動信号で`S_HB_TRG_P`と`S_HB_TRG_N`になっていて個別に設定(`S_HB_TRG_[P/N][chip number]`)
+- `bx_sync_trg`も差動信号で`S_BX_SYNC_TRG_P`と`S_BX_SYNC_TRG_N`になっていて個別に設定(`S_BX_SYNC_TRG_[P/N][chip number]`)
+- `sme`はGNDにつながっていて常に0
+
+## その他メモ
+
+### `BYPASS[3:0]`の意味
+| BYPASS[3:0] | SerialOut[0] に出るもの |
+| :---: | :---: |
+| `0x0` | Serializer 0 |
+| `0x1` | `bx_sync` input の feed-through |
+| `0x2` | `trg` input の feed-through |
+| `0x3` | `hb_trg` input の feed-through |
+| `0x4` | neighbour input (`dinN`) の feed-through |
+| `0x5` | delayed neighbour input (`dinN_del`) の feed-through |
+| `0x6` | 31-bit LFSR generator の出力 |
+| `0x7` | ADC test serializer の出力 |
+| `0x8` | digital part 用の内部 ADC clock (10/20 MHz) |
+| `0x9` | 内部 serial out clock / 2 |
+| `0xA` | 内部 bunch crossing clock (40 MHz) |
+| `0xB` | analog part 用の内部 ADC clock (10/20 MHz) |
+| `0xC` | analog part 用の内部 SAR ADC statemachine clock (80/160 MHz) |
+| `0xD` | ring oscillator の clock（トリガ時のみ動作, 100–220 MHz） |

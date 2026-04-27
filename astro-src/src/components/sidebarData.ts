@@ -32,8 +32,8 @@ export const navItems: NavItem[] = [
   {
     title: "notebook",
     href: withBase("/notebook/"),
-    //////////////// open-it
     children: [
+      //////////////// open-it
       {
         title: "Open-It",
         href: withBase("/notebook/open-it/"),
@@ -92,10 +92,25 @@ export const navItems: NavItem[] = [
     title: "samidare",
     href: withBase("/samidare/"),
     children: [
+      //////////////// board
       {
-        title: "firmware v1",
-        href: withBase("/samidare/1dc8d81e1f7ed9e4b90b148628b2bea76d316674/"),
+        title: "board",
+        href: withBase("/samidare/board/"),
       },
+      //////////////// memo
+      {
+        title: "memo",
+        href: withBase("/samidare/memo/"),
+        //  children: [
+        //   //////
+        //   {
+        //     title: "Counter",
+        //     href: withBase("/notebook/open-it/counter/"),
+        //   },
+        //   ////
+        //   ],
+      },
+      ////////////////
     ],
   },
   ////////////////////////////////////////////////////////////

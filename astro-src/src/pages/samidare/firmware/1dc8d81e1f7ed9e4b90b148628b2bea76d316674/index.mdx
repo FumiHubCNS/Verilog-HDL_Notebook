@@ -1,0 +1,49 @@
+---
+layout: "../../../../layouts/MainLayout.astro"
+title: "SAMIDARE FW V1"
+author: "Fumitaka ENDO"
+---
+
+import PdfEmbed from '../../../../components/PdfEmbed.astro';
+import { withBase } from '../../../../lib/path';
+
+
+# Firmware version 1
+
+ここではSAMIDAREのファームウェアのバージョン1について説明します。
+
+ソースコードは[ここ](https://github.com/spadi-alliance/SAMIDARE-StrADC/tree/1dc8d81e1f7ed9e4b90b148628b2bea76d316674)にあります。
+
+## SAMPA設定
+
+モードの切り替え方法の詳細は
+<a href={`${withBase("/samidare/board/c93313b0dfc84d04d88f326bfc24500363224ba5//")}`}>ここ</a>
+で説明しています。
+
+vivado上で変更する際には以下をいじれば良いはずです。
+※DSPの場合は、`xlconstant_0`のみでOK？
+
+| ブロック図中の名前 | インスタンスの名前 | 変数の名前  | description |
+| :-------------: | :-------------: | :-------: | :-------------: |
+| Const_wrapper   | xlconstant_1    | dout[0:0] | `hb_trg`, `bx_sync_trg`を設定 |
+| None            | xlconstant_0    | dout[6:0] | `clk_config[6:0]`を設定|
+
+## ブロック図
+
+### 最小版ブロック図
+
+<PdfEmbed
+  src="/pdf/samidare/top_block_small.pdf"
+  title="サンプルPDF"
+  height="70dvh"
+  zoom="page-width"
+/>
+
+### 展開済みブロック図
+
+<PdfEmbed
+  src="/pdf/samidare/top_block.pdf"
+  title="サンプルPDF"
+  height="70dvh"
+  zoom="page-width"
+/>

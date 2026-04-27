@@ -1,0 +1,159 @@
+---
+layout: "../../../../layouts/MainLayout.astro"
+title: "SAMPA配線"
+author: "Fumitaka ENDO"
+---
+
+import PdfEmbed from '../../../../components/PdfEmbed.astro';
+
+# SAMPA配線
+
+ここではSAMPAチップの配線のめものまとめておきます。
+
+SAMIDAREには4つのSAMPAチップが搭載されており、SAMPA0からSAMPA3と呼ばれています。ここではSAMPA0の配線をまとめておきます。
+
+## Sampa0
+
+| Net name          | In/Out                | Output name                           |
+| :---------------: | :-------------------: | :-----------------------------------: |
+| `SIG[31:0]`       | Input                 | `SIG1[31:0]`                          |
+| `HADD0`           | Input                 | `GND`                                 |
+| `HADD1`           | Input                 | `GND`                                 |
+| `HADD2`           | Input                 | `GND`                                 |
+| `HADD3`           | Input                 | `GND`                                 |
+| `VDDFE`           | Input                 | `VDDFE0`                              |
+| `VDDAD`           | Input                 | `VDDAD0`                              |
+| `VDD`             | Input                 | `VDDD0`                               |
+| `VREFP`           | Input                 | `VREFP0`                              |
+| `S_HB_TRG_P`      | Input                 | `SHBTRGP`                             |
+| `S_HB_TRG_N`      | Input                 | `SHBTRGN`                             |
+| `S_BX_SYNC_TRG_P` | Input                 | `SBXTRGP`                             |
+| `S_BX_SYNC_TRG_N` | Input                 | `SBXTRGN`                             |
+| `S_CLKSOIP`       | Input                 | `SCLKSIP0`                            |
+| `S_CLKSOIN`       | Input                 | `SCLKSIN0`                            |
+| `S_HRSTB_P`       | Input                 | `SHRSTBP0`                            |
+| `S_HRSTB_N`       | Input                 | `SHRSTBN0`                            |
+| `S_TRG_P`         | Input                 | `STRGP0`                              |
+| `S_TRG_N`         | Input                 | `STRGN0`                              |
+| `SAMPA_I2C_SDA`   | Bidirectional         | `SI2CSDA`                             |
+| `SAMPA_I2C_SCL`   | Input                 | `SI2CSCL`                             |
+| `CLK_CONFIG[6:0]` | Input                 | `CLKCONF[6:0]`                        |
+| `POL`             | Input                 | `POL`                                 |
+| `CTS`             | Input                 | `CTS`                                 |
+| `CG0`             | Input                 | `CG0`                                 |
+| `CG1`             | Input                 | `CG1`                                 |
+| `SOP[10:0]`       | Output                | `SOP1[10:0]`                          |
+| `SON[10:0]`       | Output                | `SON1[10:0]`                          |
+
+`CG0`と`CG1`以外の数字付きラベルはSAMPA`i`に対して`1`の数字がついています。
+
+ただし、`SIG`と`SOP`、`SON`はSAMPA`i`に対して`i+1`になっています。
+
+### SOPとSONの意味のついて
+
+SAMPAの出力である`SOP`と`SON`はそれぞれPositiveとNegativeの意味で、差動信号になっています。
+
+10bitのデータが出力されるため、`SOP[10:0]`と`SON[10:0]`の2つの信号で1つのデータを表現しています。
+
+各bitが出力する信号は以下の通りです。
+
+| Pin number | Net name              | Output  |
+| :--------: | :-------------------: | :-----: |
+| `B20`      | `SDO4+`               | `SOP10` |
+| `A20`      | `SDO4-`               | `SON10` |
+| `AB20`     | `SDO3+`               | `SOP9`  |
+| `AA20`     | `SDO3-`               | `SON9`  |
+| `B22`      | `SDO2+`               | `SOP8`  |
+| `A22`      | `SDO2-`               | `SON8`  |
+| `Y22`      | `SDO1+`               | `SOP7`  |
+| `Y21`      | `SDO1-`               | `SON7`  |
+| `C22`      | `SDO0+`               | `SOP6`  |
+| `C21`      | `SDO0-`               | `SON6`  |
+| `G19`      | `NBFLOWSTOP_OUT_SO5+` | `SOP5`  |
+| `G18`      | `NBFLOWSTOP_OUT_SO5-` | `SON5`  |
+| `J19`      | `SERIALOUT+[4]`       | `SOP4`  |
+| `J18`      | `SERIALOUT-[4]`       | `SON4`  |
+| `H22`      | `SERIALOUT+[3]`       | `SOP3`  |
+| `H21`      | `SERIALOUT-[3]`       | `SON3`  |
+| `K22`      | `SERIALOUT+[2]`       | `SOP2`  |
+| `K21`      | `SERIALOUT-[2]`       | `SON2`  |
+| `M22`      | `SERIALOUT+[1]`       | `SOP1`  |
+| `M21`      | `SERIALOUT-[1]`       | `SON1`  |
+| `L19`      | `SERIALOUT+[0]`       | `SOP0`  |
+| `L18`      | `SERIALOUT-[0]`       | `SON0`  |
+
+## FPGAへの配線について
+
+これらのSAMPAの配線ですが、電源ライン以外の`output`または`bidirectional`な配線は信号変換などを経る場合もありますが、FPGAに接続されています。
+
+以下がその配線対応表です。
+
+| Net name          | In/Out                | Output name                           |
+| :--------------: | :------------------: | :-----------------------------------: |
+| `SO0P[10:0]`     | Input                | `SOP1[10:0]`                          |
+| `SO0N[10:0]`     | Input                | `SON1[10:0]`                          |
+| `SO1P[10:0]`     | Input                | `SOP2[10:0]`                          |
+| `SO1N[10:0]`     | Input                | `SON2[10:0]`                          |
+| `SO2P[10:0]`     | Input                | `SOP3[10:0]`                          |
+| `SO2N[10:0]`     | Input                | `SON3[10:0]`                          |
+| `SO3P[10:0]`     | Input                | `SOP4[10:0]`                          |
+| `SO3N[10:0]`     | Input                | `SON4[10:0]`                          |
+| `SAMPA_I2C_SCL`  | Output               | `SI2CSCL`                             |
+| `SAMPA_I2C_SDA`  | Bidirectional        | `SI2CSDA`                             |
+| `POL`            | Output               | `POL`                                 |
+| `CTS`            | Output               | `CTS`                                 |
+| `CG0`            | Output               | `CG0`                                 |
+| `CG1`            | Output               | `CG1`                                 |
+| `CLK_CFG[6:0]`   | Output               | `CLKCONF[6:0]`                        |
+| `HB_TRG_P`       | Output               | `HBTRGP`                              |
+| `HB_TRG_N`       | Output               | `HBTRGN`                              |
+| `BX_SYNC_TRG_P`  | Output               | `BXTRGP`                              |
+| `BX_SYNC_TRG_N`  | Output               | `BXTRGN`                              |
+| `CLKSOIN_P0`     | Output               | `CLKSIP0`                             |
+| `CLKSOIN_N0`     | Output               | `CLKSIN0`                             |
+| `HRSTB_P0`       | Output               | `HRSTBP0`                             |
+| `HRSTB_N0`       | Output               | `HRSTBN0`                             |
+| `TRG_P0`         | Output               | `TRGP0`                               |
+| `TRG_N0`         | Output               | `TRGN0`                               |
+| `CLKSOIN_P1`     | Output               | `CLKSIP1`                             |
+| `CLKSOIN_N1`     | Output               | `CLKSIN1`                             |
+| `HRSTB_P1`       | Output               | `HRSTBP1`                             |
+| `HRSTB_N1`       | Output               | `HRSTBN1`                             |
+| `TRG_P1`         | Output               | `TRGP1`                               |
+| `TRG_N1`         | Output               | `TRGN1`                               |
+| `CLKSOIN_P2`     | Output               | `CLKSIP2`                             |
+| `CLKSOIN_N2`     | Output               | `CLKSIN2`                             |
+| `HRSTB_P2`       | Output               | `HRSTBP2`                             |
+| `HRSTB_N2`       | Output               | `HRSTBN2`                             |
+| `TRG_P2`         | Output               | `TRGP2`                               |
+| `TRG_N2`         | Output               | `TRGN2`                               |
+| `CLKSOIN_P3`     | Output               | `CLKSIP3`                             |
+| `CLKSOIN_N3`     | Output               | `CLKSIN3`                             |
+| `HRSTB_P3`       | Output               | `HRSTBP3`                             |
+| `HRSTB_N3`       | Output               | `HRSTBN3`                             |
+| `TRG_P3`         | Output               | `TRGP3`                               |
+| `TRG_N3`         | Output               | `TRGN3`                               |
+| `GPIOP[7:0]`     | Bidirectional        | `GPIOP[7:0]`                          |
+| `GPION[7:0]`     | Bidirectional        | `GPION[7:0]`                          |
+| `BASECLK`        | Input                | `BASECLK`                             |
+| `CLKGTHP`        | Input                | `CLKGTHP`                             |
+| `CLKGTHN`        | Input                | `CLKGTHN`                             |
+| `SAMPA_EN_A`     | Output               | `SAMPAENA`                            |
+| `SAMPA_EN_D`     | Output               | `SAMPAEND`                            |
+| `GTHTXP0`        | Output               | `GTHTXP0`                             |
+| `GTHTXN0`        | Output               | `GTHTXN0`                             |
+| `GTHRXP0`        | Input                | `GTHRXP0`                             |
+| `GTHRXN0`        | Input                | `GTHRXN0`                             |
+| `SFP1TXP`        | Output               | `SFP1TXP`                             |
+| `SFP1TXN`        | Output               | `SFP1TXN`                             |
+| `SFP1RXP`        | Input                | `SFP1RXP`                             |
+| `SFP1RXN`        | Input                | `SFP1RXN`                             |
+| `FCSB`           | Output               | `FCSB`                                |
+| `DIN`            | Input                | `DIN`                                 |
+| `SPID2`          | Output               | `SPID2`                               |
+| `SPID3`          | Output               | `SPID3`                               |
+| `MOSI`           | Output               | `MOSI`                                |
+| `SPICLK`         | Output               | `SPICLK`                              |
+| `LED[3:0]`       | Output               | `LED[3:0]`                            |
+| `DONE`           | Input                | `DONE`                                |
+| `PUSH_SW`        | Input                | `PUSHSW`                              |

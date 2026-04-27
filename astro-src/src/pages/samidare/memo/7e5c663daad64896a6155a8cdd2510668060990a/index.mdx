@@ -1,0 +1,52 @@
+---
+layout: "../../../../layouts/MainLayout.astro"
+title: "最初の合成時のエラーについて"
+author: "Fumitaka ENDO"
+---
+
+import { withBase } from '../../../../lib/path';
+
+# 最初の合成時のエラーについて
+
+SAMIDAREのプロジェクトをクローンして、最初の合成を行うと、いくつかのエラーが起きる。
+
+基本的にはgit cloneして、Vivadoでプロジェクトを開いて、合成しただけ
+
+```zsh
+git clone https://github.com/spadi-alliance/SAMIDARE-StrADC.git
+cd SAMIDARE-StrADC
+vivado
+```
+
+あとは`open project`からプロジェクトを開いて、合成しただけ
+
+
+## Error log
+
+### IP Status: ERROR
+
+プロジェクトを開いて、合成を行うと、IP Status: ERROR というエラーが出る。
+
+これはIPのソースコードが見つからないために起きるエラーである。
+
+この問題はGUIから更新すれば良い。
+
+1. IP Statusを開く
+2. タブの下にある`Upgrade Selected`をクリックする
+3. `Upgrade All`をクリックする
+4. `OK`をクリックする
+
+<img
+  src={withBase("/image/samidare001.png")}
+  alt="IP Status: ERRORの解決方法"
+  style={{ height: "400px", width: "auto" }}
+/>
+
+### top_block_rst_clk_wiz_0_300M1_0.xdcがない
+
+ファイルの名前が変わっていて変更が必要である。ひとまずは以下のようにエイリアスを作ることで対応する。
+
+```zsh
+cd SAMIDARE/samidare.gen/sources_1/bd/top_block/ip/top_block_rst_clk_wiz_0_300M1_0
+ln -s top_block_rst_clk_wiz_0_300M1_0_board.xdc top_block_rst_clk_wiz_0_300M1_0.xdc
+```

@@ -1,0 +1,67 @@
+---
+layout: "../../../../layouts/MainLayout.astro"
+title: "SAMIDAREボードにSPI Flash書き込む方法"
+author: "Fumitaka ENDO"
+---
+
+import { withBase } from '../../../../lib/path';
+
+# SAMIDAREボードにSPI Flash書き込む方法
+
+クラウディオ経由で京大の長房くんが作ってくれたファームウェアをSAMIDAREの実機に書き込む方法を教えてもらったので、その方法を残しておきます。
+
+## 1. SPI flash memoryの追加
+
+1. Hardware Managerを開きます。
+2. 対象デバイスを右クリックします。
+3. Add Configuration Memory Deviceを選びます。
+4. `mx25u6472f-spi-x1_x2_x4`を選択します。
+
+<img
+  src={withBase("/image/samidare005.png")}
+  alt="SPIの書き込み1"
+  style={{ height: "300px", width: "auto" }}
+/>
+
+## 2. `.bin` ファイルを生成する
+
+1. Hardware ManagerのツールバーのToolsを選択します。
+2. Generate Memory Configuration Fileをクリックします
+
+<img
+  src={withBase("/image/samidare006.png")}
+  alt="SPIの書き込み2"
+  style={{ height: "300px", width: "auto" }}
+/>
+
+3. 新規ウィンドウで設定を指定します。
+  - Formatは`BIN`にします。
+  - Memory Partを選びます。
+  - 出力ファイル名は自分の好きなように決めます。
+  - Interfaceは`SPIx1`に設定します。
+  - 元の bit file を選択します。
+
+<img
+  src={withBase("/image/samidare007.png")}
+  alt="SPIの書き込み3"
+  style={{ height: "300px", width: "auto" }}
+/>
+
+## 3. SPI flash に書き込む
+
+1. 生成したconfiguration fileを選択します。
+2. State of non-config mem I/O pinsをPull-upに設定します。
+3. Address RangeをEntire Configuration Memory Deviceに設定します。
+
+<img
+  src={withBase("/image/samidare008.png")}
+  alt="SPIの書き込み4"
+  style={{ height: "300px", width: "auto" }}
+/>
+
+
+## 4. SPI Flash から起動する
+
+あとはJTAGを外して、ボードを再起動すれば良いです。
+
+**JTAGが接続されたままだとSPI memoryからbootできないということに気をつけてください。**
