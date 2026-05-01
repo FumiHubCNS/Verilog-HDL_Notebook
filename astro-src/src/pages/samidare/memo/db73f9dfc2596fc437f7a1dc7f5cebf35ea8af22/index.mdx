@@ -1,0 +1,64 @@
+---
+layout: "../../../../layouts/MainLayout.astro"
+title: "ILAモードの使い方メモ"
+author: "Fumitaka ENDO"
+---
+
+import { withBase } from '../../../../lib/path';
+
+
+# ILAモードの使い方メモ
+
+ILAモードの使い方についてのメモです。
+
+
+## Triggerモードについて
+
+ILAのトリガーにはいくつか機能がありますが、使いやすいのは以下の二つです。
+
+<img
+  src={withBase("/image/samidare010.png")}
+  alt="vivado001"
+  style={{ height: "400px", width: "auto" }}
+/>
+
+
+- Run trigger Immediate: 即時反映されるトリガーで、ボタンを押した瞬間にデータの記録が始まります。
+- Run trigger: ILAのウィンドウ上でトリガー設定を行い、ボタンを押した後、その条件が満たされたときにデータの記録が始まります。
+
+詳細は公式ドキュメント「
+[波形 ILA トリガーおよびエクスポート機能の使用](https://docs.amd.com/r/ja-JP/ug908-vivado-programming-debugging/%E6%B3%A2%E5%BD%A2-ILA-%E3%83%88%E3%83%AA%E3%82%AC%E3%83%BC%E3%81%8A%E3%82%88%E3%81%B3%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%88%E6%A9%9F%E8%83%BD%E3%81%AE%E4%BD%BF%E7%94%A8?tocId=iUTTgEi~fuFjYXqm0G282A)
+」に記載されています。
+
+### ILA triggerの設定方法
+
+1. hardware managerのILAウィンドウでの右下にあるTrigger setupの+ボタンからトリガー信号を選択肢します。
+2. 追加すると新たな行が追加されます。
+3. 各列の値を設定することで、トリガー条件を設定できます。
+
+<img
+  src={withBase("/image/samidare011.png")}
+  alt="vivado002"
+  style={{ height: "500px", width: "auto" }}
+/>
+
+### Run triggerモードの実例
+
+トリガーモードの実例動画を下記に示します。
+
+動画では`top_block/appUnit/cs_das_rx_0/n_samples[7:4]`をトリガー条件にしています。
+
+この設定はDAQソフト設定する取得するサンプル数が格納されいるBitです。
+
+トリガー条件を0100にしており、これは64sampleを取得するという意味になります。
+
+この動画ではvivadoのしたにあるターミナルで、あらかじめ起動しておいたDAQソフトにコマンドを送信しています。
+
+動画では、元々の取得サンプル数は16に設定しています。動画中でスクリプトを使ってサンプル数を32, 64と変更しています。
+
+64にした時にトリガー条件が満たされ、データの記録が始まる様子がわかります。
+
+<video 
+  src={withBase("/video/vivado001.mov")} 
+  style={{ height: "600px", width: "auto" }}
+controls></video>

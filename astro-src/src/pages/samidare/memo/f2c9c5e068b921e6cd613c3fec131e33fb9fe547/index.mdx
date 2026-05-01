@@ -1,0 +1,30 @@
+---
+layout: "../../../../layouts/MainLayout.astro"
+title: "SOsをdebugに入れるとImplementationが失敗する問題"
+author: "Fumitaka ENDO"
+---
+
+import { withBase } from '../../../../lib/path';
+
+# SOsをdebugに入れるとImplementationが失敗する問題
+
+ひとまず、FPGAに流れてくるSAMPAの信号を確認しようとして`appUnit`の`cs_das_rx_0`内のnet `Sos(40)`をmark debugに追加し、Implementationを走らせたところ、以下のエラーが発生して失敗しました。
+
+エラーメッセージは以下の通りです。
+
+```zsh
+ERROR: [Chipscope 16-213] The debug port 'u_ila_0/clk' has 1 unconnected channels (bits).
+```
+
+`u_ila_0`の`clk`が繋がっていないらしいです。
+
+一時的に`u_ila_0`を消してやってみても同じエラーになってしまいます。
+
+この問題は`Run`するときに参照されるファイルが古いらしいです。
+
+色々いじってみたのですが、結局根本解決する方法がわかりませんでした。
+また、いちいち合成に時間がかかりすぎてやる気もなくなってしまいました。
+
+なので、ソースを入れ直して一から合成し直すことにしました。
+
+もう少しvivdoに慣れて、ちゃんとした理解ができるようになったらまた、考え直してみたいとお思います。

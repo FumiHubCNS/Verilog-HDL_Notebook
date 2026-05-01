@@ -32,7 +32,9 @@ GUIでやるならNetlist/Implemented Designから追加します。
   style={{ height: "300px", width: "auto" }}
 />
 
-5. Set up debugのウィンドウを開き、追加した信号を選びます。
+5. Set up debugのウィンドウを開き、追加した信号を選びます。[^1]
+
+[^1]: この時にmarkしても出てこない場合もあります。またポップアップにドラックアンドドロップして追加する方法もあります。
 
 <img
   src={withBase("/image/samidare004.png")}
@@ -40,4 +42,11 @@ GUIでやるならNetlist/Implemented Designから追加します。
   style={{ height: "300px", width: "auto" }}
 />
 
-後の手順は`bitstream`を生成して、実機に書き込む手順と一緒です
+
+後は`bitstream`を生成して、書き込めば実機で信号を確認できます。
+
+<img
+  src={withBase("/image/samidare009.png")}
+  alt="mark debugの方法3"
+  style={{ height: "300px", width: "auto" }}
+/>
